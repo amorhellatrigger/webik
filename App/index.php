@@ -25,7 +25,6 @@
         return /^[A-Za-zА-Яа-яЁё0-9\s.,/-]+$/.test(str) && /[A-Za-zА-Яа-яЁё]/.test(str);
     }
 
-
     let form = document.forms["mainForm"];
     let driverName = form["driver_name"].value.trim();
     let car = form["car"].value.trim();
@@ -57,11 +56,11 @@
         valid = false;
     }
     if (!isValidAddress(pickup)) {
-        errors.push(" Поле 'Откуда' должно содержать буквы и может включать цифры, точки и запятые!");
+        errors.push(" Поле 'Откуда' должно содержать буквы и может включать спец.символы!");
         valid = false;
     }
     if (!isValidAddress(destination)) {
-        errors.push(" Поле 'Куда' должно содержать буквы и может включать цифры, точки и запятые!");
+        errors.push(" Поле 'Куда' должно содержать буквы и может включать спец.символы!");
         valid = false;
     }
 
