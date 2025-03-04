@@ -2,9 +2,7 @@ version: "3.8"
 
 services:
   web:
-    build:
-      context: ./app
-      dockerfile: Dockerfile
+    build: ./app
     ports:
       - "81:80"
     volumes:
@@ -13,23 +11,24 @@ services:
       - db
 
   db:
-    image: postgres:15
+    image: mysql:8.0
     restart: always
     environment:
-      POSTGRES_DB: mydb
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: userpass
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpass
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - db_data:/var/lib/mysql
 
-  pgadmin:
-    image: dpage/pgadmin4
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
     restart: always
     ports:
       - "8181:80"
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@example.com
-      PGADMIN_DEFAULT_PASSWORD: adminpass
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: rootpass
     depends_on:
       - db
 
